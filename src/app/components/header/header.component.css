@@ -1,0 +1,43 @@
+.header {
+    background-color: #004aad; 
+    color: #ffffff;
+    padding: 1rem 0;
+    margin: -0.5rem -0.5rem -0.0rem -0.5rem ;
+  
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    
+    .logo {
+      width: 8rem;
+      height: 4rem;
+      overflow: hidden;
+      object-fit: cover;
+      transition: all 0.3s ease;
+    }
+  
+    .nav ul {
+      display: flex;
+      list-style: none;
+      
+      li {
+        margin-left: 20px;
+  
+        a {
+          color: #ffffff;
+          text-decoration: none;
+          font-weight: 500;
+          font-family: arial;
+          &:hover {
+            color: #ffbd59;
+          }
+        }
+      }
+    }
+  }

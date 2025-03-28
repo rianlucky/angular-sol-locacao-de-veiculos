@@ -1,0 +1,55 @@
+<section class="vehicle-grid">
+  <div class="container">
+    <h2 class="section-title">Selecione Seu veículo</h2>
+    <div class="category-filters">
+      <button 
+        *ngFor="let category of categories"
+        [class.active]="selectedCategory === category"
+        (click)="filterByCategory(category)"
+        class="filter-btn"
+      >
+        {{ category }}
+      </button>
+    </div>
+    <div *ngIf="loading" class="loading-message">
+      <i class="fas fa-spinner fa-spin"></i> Carregando veículos...
+    </div>
+    
+    <div *ngIf="!loading" class="grid">
+      <div *ngIf="filteredVehicles.length === 0" class="no-results">
+        Nenhum veículo encontrado na categoria "{{ selectedCategory }}"
+      </div>
+      
+      <div 
+        *ngFor="let vehicle of filteredVehicles; trackBy: trackById"
+        class="vehicle-card"
+      >
+        <div class="badge">{{ vehicle.category }}</div>
+        <img [src]="vehicle.image" [alt]="vehicle.name" class="vehicle-image">
+        <div class="vehicle-info">
+          <h3>{{ vehicle.name }}</h3>
+          <ul class="features">
+            <li *ngFor="let feature of vehicle.features">
+              <i class="fas fa-check"></i> {{ feature }}
+            </li>
+          </ul>
+          <div class="price">{{ vehicle.price }}</div>
+        </div>
+        <button class="reserve-btn">
+          <i class="fas fa-calendar-alt"></i> Reservar
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #loadingState>
+  <div class="state-message">
+    <div *ngIf="loading" class="loading-spinner">
+      <i class="fas fa-spinner fa-spin"></i> Carregando veículos...
+    </div>
+    <div *ngIf="errorMessage" class="error-message">
+      <i class="fas fa-exclamation-triangle"></i> {{ errorMessage }}
+    </div>
+  </div>
+</ng-template>
